@@ -1,4 +1,4 @@
-public class Circle extends Figure implements Printing, Inputting {
+public class Circle extends Figure implements Printing {
 
     double radius = 0;
 
@@ -22,10 +22,5 @@ public class Circle extends Figure implements Printing, Inputting {
     public void print() {
         System.out.printf("Promień: %f\nPole Koła to: %f\nObwód: %f\n",
                 radius, calculateArea(), calculatePerimeter());
-    }
-
-    @Override
-    public void InputData() {
-
     }
 }

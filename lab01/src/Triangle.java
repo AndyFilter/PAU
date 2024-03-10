@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Triangle extends Figure implements Printing, Inputting {
+public class Triangle extends Figure implements Printing {
 
     double[] sides = new double[3];
 
@@ -29,10 +29,5 @@ public class Triangle extends Figure implements Printing, Inputting {
     public void print() {
         System.out.printf("Boki: [%f, %f, %f]\nPole trójkąta to: %f\nObwód: %f\n",
                 sides[0], sides[1], sides[2], calculateArea(), calculatePerimeter());
-    }
-
-    @Override
-    public void InputData() {
-
     }
 }

@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class ThreeDim implements Printing, Inputting {
+public class ThreeDim implements Printing {
 
     Figure base;
     double height = 0;
@@ -44,10 +44,5 @@ public class ThreeDim implements Printing, Inputting {
         } else if (base instanceof Circle) {
             System.out.println("Graniastosłup o pods. koła");
         }
-    }
-
-    @Override
-    public void InputData() {
-
     }
 }

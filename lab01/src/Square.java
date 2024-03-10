@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Square extends Figure implements Printing, Inputting {
+public class Square extends Figure implements Printing {
 
     double side = 0;
 
@@ -25,10 +25,5 @@ public class Square extends Figure implements Printing, Inputting {
     public void print() {
         System.out.printf("Boki: [%f, %f]\nPole kwadratu to: %f\nObwód: %f\n",
                 side, side, calculateArea(), calculatePerimeter());
-    }
-
-    @Override
-    public void InputData() {
-
     }
 }
