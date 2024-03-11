@@ -8,21 +8,48 @@ public class Main {
         ThreeDim prism = null;
         loop:
         while(true) {
-            if(fig == null) {
-                System.out.println("Wybierz opcje:\n1 - Wybierz figurę\n0 - Zamknij");
-            }
-            else{
-                System.out.println("Wybierz opcje:\n1 - Wybierz figurę\n2 - Wypisz informacje o figurze\n3 - Wypisz pole figury\n4 - Wypisz obwód figury\n0 - Zamknij");
-            }
+            System.out.println("Wybierz opcje:\n1 - Wybierz figurę");
+
+            // Nie wyświetlaj niepotrzebnych opcji
+            if(fig != null)
+                System.out.println("2 - Wypisz informacje o figurze\n3 - Wypisz pole figury\n4 - Wypisz obwód figury");
+
+            if(prism != null)
+                System.out.println("5 - Wypisz objętość\n6 - Wypisz pole graniastosłupa");
+
+            System.out.println("0 - Zamknij");
             switch (scanner.next())
             {
+                // Zamknij program
                 case "0":
                 {
                     break loop;
                 }
                 case "1":
                 {
-                    fig = SelectFigure();
+                    // Wybierz figurę lub graniastosłup
+                    System.out.println("Wybierz opcje:\n1 - Trójkąt\n2 - Kwadrat\n3 - Okrąg\n4 - Graniastosłup\n0 - Anuluj");
+                    int _in = scanner.nextInt();
+                    if(_in < 4) // Wybrano figurę
+                        fig = SelectFigure(_in);
+                    else if(_in == 4) // Wybrano graniastosłup
+                    {
+                        // Poproś o podanie podstawy graniastosłupa
+                        Figure base;
+                        System.out.println("Wybierz podstawę graniastosłupa:\n1 - Trójkąt\n2 - Kwadrat\n3 - Okrąg\n0 - Anuluj");
+                        base = SelectFigure(scanner.nextInt());
+
+                        System.out.println("Podaj wysokość:");
+
+                        try {
+                            prism = new ThreeDim(scanner.nextFloat());
+                            prism.base = base;
+                        }
+                        catch (Exception ex)
+                        {
+                            System.out.println("Zły parametr");
+                        }
+                    }
                     break;
                 }
                 case "2":
@@ -52,8 +79,25 @@ public class Main {
 
                     break;
                 }
+                case "5":
+                {
+                    if(prism != null)
+                        System.out.printf("Objętość to %f\n", prism.calculateVolume());
+                    else
+                        System.out.println("Najpierw należy ustalić graniastosłup");
+                    break;
+                }
+                case "6":
+                {
+                    if(prism != null)
+                        System.out.printf("Pole graniastosłupa to %f\n", prism.calculateArea());
+                    else
+                        System.out.println("Najpierw należy ustalić graniastosłup");
+                    break;
+                }
                 default:
                 {
+                    // Poinformuj użytkownika o braku podanej komendy
                     System.out.println("Nieznana komenda!");
                     break;
                 }
@@ -61,10 +105,10 @@ public class Main {
         }
     }
 
-    public static Figure SelectFigure() {
-        System.out.println("Wybierz opcje:\n1 - Trójkąt\n2 - Kwadrat\n3 - Okrąg\n0 - Anuluj");
-        switch (scanner.next()) {
-            case "1":
+    public static Figure SelectFigure(int selection) {
+        //System.out.println("Wybierz opcje:\n1 - Trójkąt\n2 - Kwadrat\n3 - Okrąg\n0 - Anuluj");
+        switch (selection) {
+            case 1:
             {
                 System.out.println("Podaj długość boku 1:");
                 float a = scanner.nextFloat();
@@ -80,7 +124,7 @@ public class Main {
                 }
                 break;
             }
-            case "2":
+            case 2:
             {
                 System.out.println("Podaj długość boku:");
                 float a = scanner.nextFloat();
@@ -92,7 +136,7 @@ public class Main {
                 }
                 break;
             }
-            case "3":
+            case 3:
             {
                 System.out.println("Podaj promień:");
                 float r = scanner.nextFloat();
