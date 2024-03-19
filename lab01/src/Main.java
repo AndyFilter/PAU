@@ -15,7 +15,7 @@ public class Main {
                 System.out.println("2 - Wypisz informacje o figurze\n3 - Wypisz pole figury\n4 - Wypisz obwód figury");
 
             if(prism != null)
-                System.out.println("5 - Wypisz objętość\n6 - Wypisz pole graniastosłupa");
+                System.out.println("5 - Wypisz objętość\n6 - Wypisz pole graniastosłupa\n7 - Wypisz informacje o graniastosłupie");
 
             System.out.println("0 - Zamknij");
             switch (scanner.next())
@@ -30,20 +30,28 @@ public class Main {
                     // Wybierz figurę lub graniastosłup
                     System.out.println("Wybierz opcje:\n1 - Trójkąt\n2 - Kwadrat\n3 - Okrąg\n4 - Graniastosłup\n0 - Anuluj");
                     int _in = scanner.nextInt();
-                    if(_in < 4) // Wybrano figurę
+                    if(_in < 4) { // Wybrano figurę
+                        fig = null;
                         fig = SelectFigure(_in);
+                        if(fig != null)
+                            System.out.println("Stworzono figurę");
+                    }
                     else if(_in == 4) // Wybrano graniastosłup
                     {
                         // Poproś o podanie podstawy graniastosłupa
-                        Figure base;
+                        Figure base = null;
                         System.out.println("Wybierz podstawę graniastosłupa:\n1 - Trójkąt\n2 - Kwadrat\n3 - Okrąg\n0 - Anuluj");
                         base = SelectFigure(scanner.nextInt());
+
+                        if(base == null)
+                            break;
 
                         System.out.println("Podaj wysokość:");
 
                         try {
                             prism = new ThreeDim(scanner.nextFloat());
                             prism.base = base;
+                            System.out.println("Stworzono graniastosłup");
                         }
                         catch (Exception ex)
                         {
@@ -91,6 +99,14 @@ public class Main {
                 {
                     if(prism != null)
                         System.out.printf("Pole graniastosłupa to %f\n", prism.calculateArea());
+                    else
+                        System.out.println("Najpierw należy ustalić graniastosłup");
+                    break;
+                }
+                case "7":
+                {
+                    if(prism != null)
+                        prism.print();
                     else
                         System.out.println("Najpierw należy ustalić graniastosłup");
                     break;

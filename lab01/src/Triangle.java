@@ -8,7 +8,7 @@ public class Triangle extends Figure implements Printing {
         sides = new double[] {a,b,c};
         double max = Math.max(Math.max(a,b),c);
         // Throw if not a valid triangle
-        if(max > (Arrays.stream(sides).sum() - max)) {
+        if(max >= (Arrays.stream(sides).sum() - max)) {
             sides = null;
             throw new Exception("Bad parameters");
         }

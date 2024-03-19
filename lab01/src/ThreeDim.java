@@ -37,12 +37,19 @@ public class ThreeDim implements Printing {
 
     @Override
     public void print() {
-        if(base instanceof Triangle) {
-            System.out.println("Graniastosłup o pods. trójkąta");
-        } else if (base instanceof Square) {
-            System.out.println("Graniastosłup o pods. kwadrata");
-        } else if (base instanceof Circle) {
-            System.out.println("Graniastosłup o pods. koła");
+        switch (base) {
+            case Triangle tri -> {
+                System.out.println("Graniastosłup o pods. trójkąta");
+            }
+            case Square sqr -> {
+                System.out.println("Graniastosłup o pods. kwadratu");
+            }
+            case Circle cir -> {
+                System.out.println("Graniastosłup o pods. koła");
+            }
+            case null, default -> System.out.println("ERROR");
         }
+
+        System.out.printf("Objętość: %f\n", calculateVolume());
     }
 }
