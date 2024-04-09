@@ -1,10 +1,45 @@
+package com.pau.lab03;
+
 import java.util.Objects;
 
 public class Teacher implements Comparable<Teacher> {
+    public String getImie() {
+        return imie;
+    }
+
+    public void setImie(String imie) {
+        this.imie = imie;
+    }
+
+    public String getNazwisko() {
+        return nazwisko;
+    }
+
+    public void setNazwisko(String nazwisko) {
+        this.nazwisko = nazwisko;
+    }
+
+    public TeacherCondition getStan() {
+        return stan;
+    }
+
+    public void setStan(TeacherCondition stan) {
+        this.stan = stan;
+    }
+
     String imie;
     String nazwisko;
     TeacherCondition stan;
     int rok_urodzenia;
+
+    public double getWynagrodzenie() {
+        return wynagrodzenie;
+    }
+
+    public void setWynagrodzenie(double wynagrodzenie) {
+        this.wynagrodzenie = wynagrodzenie;
+    }
+
     double wynagrodzenie;
 
     public Teacher(String name, String surname, TeacherCondition cond,
